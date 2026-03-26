@@ -1,203 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Amr Saleh</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amr Saleh | Senior Unity Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Portfolio</div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
+
+  <!-- ── Loading Screen ── -->
+  <div id="loadingScreen" aria-live="polite">
+    <div class="ls-content">
+      <div class="ls-logo">AS</div>
+      <div class="ls-name">AMR SALEH</div>
+      <div class="ls-role">SENIOR UNITY DEVELOPER</div>
+      <div class="ls-bar-wrap">
+        <div class="ls-bar"><div class="ls-fill" id="lsFill"></div></div>
+        <span class="ls-pct" id="lsPct">0%</span>
+      </div>
+      <div class="ls-status" id="lsStatus">INITIALIZING SYSTEMS...</div>
+    </div>
+    <div class="ls-scanlines"></div>
+  </div>
+
+  <!-- ── Custom Cursor ── -->
+  <div class="cur-dot" id="curDot"></div>
+  <div class="cur-ring" id="curRing"></div>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo" aria-label="Home">
+        <span class="nb">[</span>AS<span class="nb">]</span>
+      </a>
+      <ul class="nav-menu" id="navMenu" role="menubar">
+        <li role="none"><a href="#home"     class="nav-lnk" data-s="home"     role="menuitem"><span class="ni">00</span>HOME</a></li>
+        <li role="none"><a href="#about"    class="nav-lnk" data-s="about"    role="menuitem"><span class="ni">01</span>ABOUT</a></li>
+        <li role="none"><a href="#projects" class="nav-lnk" data-s="projects" role="menuitem"><span class="ni">02</span>MISSIONS</a></li>
+        <li role="none"><a href="#skills"   class="nav-lnk" data-s="skills"   role="menuitem"><span class="ni">03</span>SKILLS</a></li>
+        <li role="none"><a href="#contact"  class="nav-lnk" data-s="contact"  role="menuitem"><span class="ni">04</span>CONTACT</a></li>
+      </ul>
+      <button class="nav-tog" id="navTog" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO — MAIN MENU
+  ══════════════════════════════════════ -->
+  <section id="home" class="hero">
+    <canvas id="bgCanvas"></canvas>
+    <div class="scanlines"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        UNITY3D &amp; C# DEVELOPER
+      </p>
+      <h1 class="hero-name">
+        <span class="hn-first">AMR</span>
+        <span class="hn-last">SALEH</span>
+      </h1>
+      <p class="hero-deck">Unity3D &nbsp;·&nbsp; VR/AR &nbsp;·&nbsp; DOTS &nbsp;·&nbsp; Multiplayer &nbsp;·&nbsp; C#</p>
+
+      <nav class="game-menu" aria-label="Site navigation">
+        <a href="#about"    class="mi"><span class="mi-n">01</span><span class="mi-sep"></span><span class="mi-lbl">ABOUT ME</span><i class="fas fa-chevron-right mi-arr"></i></a>
+        <a href="#projects" class="mi"><span class="mi-n">02</span><span class="mi-sep"></span><span class="mi-lbl">VIEW PROJECTS</span><i class="fas fa-chevron-right mi-arr"></i></a>
+        <a href="#skills"   class="mi"><span class="mi-n">03</span><span class="mi-sep"></span><span class="mi-lbl">SKILLS &amp; TECH</span><i class="fas fa-chevron-right mi-arr"></i></a>
+        <a href="#contact"  class="mi"><span class="mi-n">04</span><span class="mi-sep"></span><span class="mi-lbl">CONTACT</span><i class="fas fa-chevron-right mi-arr"></i></a>
+      </nav>
+
+      <a href="AmrSaleh.pdf" download class="cv-dl">
+        <i class="fas fa-download"></i> DOWNLOAD CV
+      </a>
+    </div>
+
+    <a href="#about" class="scroll-cta" aria-label="Scroll to about">
+      <span>SCROLL TO EXPLORE</span>
+      <i class="fas fa-chevron-down"></i>
+    </a>
+
+    <!-- Sand dune silhouette — blends hero into the about section -->
+    <div class="hero-dunes" aria-hidden="true">
+      <svg viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <!-- distant dune -->
+        <path d="M0,62 C160,22 340,78 540,46 C740,14 920,66 1100,44 C1260,26 1370,58 1440,48 L1440,100 L0,100 Z" fill="#0e1828"/>
+        <!-- near dune — matches about section bg -->
+        <path d="M0,82 C220,52 460,88 720,68 C980,48 1220,80 1440,70 L1440,100 L0,100 Z" fill="#0a1020"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════ -->
+  <section id="about" class="about sec">
+    <div class="wrap">
+
+      <header class="sec-hdr">
+        <span class="sec-tag">// 01</span>
+        <h2 class="sec-title">ABOUT <span class="ac">ME</span></h2>
+        <div class="title-rule"></div>
+      </header>
+
+      <div class="about-grid">
+        <div class="bio">
+          <p class="bio-p">Unity3D and C# developer with over <span class="ac">nine years of experience</span> in game development. Spearheaded the creation of <em>Highstreet Calamity</em>, a multiplayer VR experience, while designing innovative systems such as a 10-mode locomotion engine and hex-grid tools.</p>
+          <p class="bio-p">Expertise in the <span class="ac">Data-Oriented Technology Stack (DOTS)</span> and Netcode for Entities drives impactful outcomes across professional studios in Egypt, the Netherlands, and Sweden.</p>
+          <div class="bio-chips">
+            <span class="chip"><i class="fas fa-graduation-cap"></i> MSc Game Design — Uppsala University</span>
+            <span class="chip"><i class="fas fa-map-marker-alt"></i> Giza, Egypt</span>
+            <span class="chip"><i class="fas fa-language"></i> Arabic &middot; English (IELTS) &middot; Swedish</span>
+          </div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Hi, I'm <span class="highlight">Amr Saleh</span></h1>
-            <p class="tagline">Unity3D & C# Developer | VR/AR Specialist</p>
-            <p class="description">9+ years crafting immersive VR/AR games and tools — from multiplayer locomotion systems to hex grid builders</p>
-            <a href="#projects" class="cta-button">View My Work</a>
+        <div class="stats-grid">
+          <div class="stat-card" data-count="9"  data-sfx="+"><div class="sv"><span class="cn">0</span>+</div><div class="sl">YEARS EXP.</div></div>
+          <div class="stat-card" data-count="20" data-sfx="+"><div class="sv"><span class="cn">0</span>+</div><div class="sl">PROJECTS</div></div>
+          <div class="stat-card" data-count="5"  data-sfx=""><div class="sv"><span class="cn">0</span></div><div class="sl">STUDIOS</div></div>
+          <div class="stat-card" data-count="3"  data-sfx="+"><div class="sv"><span class="cn">0</span>+</div><div class="sl">AWARDS</div></div>
         </div>
-        <div class="hero-animation">
-            <div class="floating-box"></div>
+      </div>
+
+      <!-- Career Timeline -->
+      <div class="timeline">
+        <span class="sec-tag" style="margin-bottom:32px;display:block">// CAREER LOG</span>
+
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <span class="tl-period">07/2023 — 04/2026</span>
+            <h3 class="tl-role">Senior Unity Developer</h3>
+            <span class="tl-co">Highstreet</span>
+            <p class="tl-desc">Led development of Highstreet Calamity VR. Designed scalable locomotion system using Strategy pattern with 10+ movement modes, managed Multiplay &rarr; AWS GameLift migration, led the tech team, and reviewed pull requests.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I'm a Unity3D and C# developer with over nine years of experience in game development. I spearheaded the creation of <em>Highstreet Calamity</em>, a multiplayer VR experience, designing systems such as a scalable locomotion engine with 10+ movement modes and real-time multiplayer via Netcode for Entities.</p>
-                    <p>My expertise in the Data-Oriented Technology Stack (DOTS) and VR/AR development has driven impactful outcomes across studios in Egypt, the Netherlands, and Sweden. I hold a Master's in Game Design from Uppsala University Campus Gotland.</p>
-                </div>
-                <div class="about-stats">
-                    <div class="stat">
-                        <h3>9+</h3>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="stat">
-                        <h3>20+</h3>
-                        <p>Projects Completed</p>
-                    </div>
-                    <div class="stat">
-                        <h3>3+</h3>
-                        <p>Awards Won</p>
-                    </div>
-                </div>
-            </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <span class="tl-period">11/2021 — 05/2023</span>
+            <h3 class="tl-role">Unity Developer</h3>
+            <span class="tl-co">Dephion B.V.</span>
+            <p class="tl-desc">Owned a Unity-based content builder app for Habtic. Implemented UI with Unity UI Toolkit, maintained the mobile app, and created mini-games to drive user engagement.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
-                    <div class="project-info">
-                        <h3>Highstreet Calamity</h3>
-                        <p>A multiplayer VR experience featuring a scalable locomotion system with 10+ movement modes (climbing, wall-running, grappling hook, VR swimming) and real-time multiplayer powered by Netcode for Entities.</p>
-                        <div class="project-tags">
-                            <span>Unity3D</span>
-                            <span>VR</span>
-                            <span>Multiplayer</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
-                    <div class="project-info">
-                        <h3>Hex Grid Builder</h3>
-                        <p>A flexible Unity3D grid tool supporting square, 3D square, and hexagonal grids with full neighbour detection — built for strategy and board game development.</p>
-                        <div class="project-tags">
-                            <span>Unity3D</span>
-                            <span>C#</span>
-                            <span>Tools</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
-                    <div class="project-info">
-                        <h3>Lord of the Nerds</h3>
-                        <p>VR graduation project built for Oculus Rift & HTC VIVE using Unity3D and C#. Won 5th place nationally at Microsoft Imagine Cup 2017.</p>
-                        <div class="project-tags">
-                            <span>Unity3D</span>
-                            <span>VR</span>
-                            <span>C#</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-            </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <span class="tl-period">03/2018 — 09/2020</span>
+            <h3 class="tl-role">Lead Gameplay Developer</h3>
+            <span class="tl-co">KandooZ Studio</span>
+            <p class="tl-desc">Led VR/AR gameplay, AI, and UI development. Co-founded the studio and shipped VR Racing on Steam and the EdVRd educational VR title.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2>Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Game Development</h3>
-                    <ul>
-                        <li>Unity3D</li>
-                        <li>C#</li>
-                        <li>VR / AR Development</li>
-                        <li>Game Design</li>
-                        <li>DOTS</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Multiplayer & Audio</h3>
-                    <ul>
-                        <li>Netcode for Entities</li>
-                        <li>FMOD Audio</li>
-                        <li>AWS GameLift</li>
-                        <li>Multiplay Hosting</li>
-                        <li>Node.js / Server Mgmt</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Architecture</h3>
-                    <ul>
-                        <li>Design Patterns</li>
-                        <li>Character Controllers</li>
-                        <li>Performance Optimization</li>
-                        <li>API Integration</li>
-                        <li>Code Review</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Process & Tools</h3>
-                    <ul>
-                        <li>Agile / Scrum</li>
-                        <li>Team Leadership</li>
-                        <li>Git</li>
-                        <li>Vuforia SDK</li>
-                        <li>Unity UI Toolkit</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <span class="tl-period">08/2017 — 03/2018</span>
+            <h3 class="tl-role">Junior Game Developer</h3>
+            <span class="tl-co">Appsinnovate</span>
+            <p class="tl-desc">Shipped Visa's "City of Dreams" on Google Play, AR app for Nissan Egypt, and a training simulation for STC Saudi Arabia — all in C# and Unity3D.</p>
+          </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <p>I'd love to hear from you. Feel free to reach out!</p>
-            <div class="contact-methods">
-                <a href="mailto:AmrMHady92@gmail.com" class="contact-card">
-                    <i class="fas fa-envelope"></i>
-                    <h3>Email</h3>
-                    <p>AmrMHady92@gmail.com</p>
-                </a>
-                <a href="https://www.linkedin.com/in/amrsaleh92/" class="contact-card" target="_blank">
-                    <i class="fab fa-linkedin"></i>
-                    <h3>LinkedIn</h3>
-                    <p>https://www.linkedin.com/in/amrsaleh92/</p>
-                </a>
-                <a href="https://github.com/Amrmhady92" class="contact-card" target="_blank">
-                    <i class="fab fa-github"></i>
-                    <h3>GitHub</h3>
-                    <p>https://github.com/Amrmhady92</p>
-                </a>
-            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PROJECTS — MISSION SELECT
+  ══════════════════════════════════════ -->
+  <section id="projects" class="projects sec">
+    <div class="wrap">
+
+      <header class="sec-hdr">
+        <span class="sec-tag">// 02</span>
+        <h2 class="sec-title">MISSION <span class="ac">SELECT</span></h2>
+        <div class="title-rule"></div>
+      </header>
+
+      <div class="filter-bar" role="group" aria-label="Project filters">
+        <button class="fbtn active" data-f="all">ALL</button>
+        <button class="fbtn" data-f="vr">VR</button>
+        <button class="fbtn" data-f="tools">TOOLS</button>
+        <button class="fbtn" data-f="ai">AI / TECH</button>
+        <button class="fbtn" data-f="mobile">MOBILE</button>
+      </div>
+
+      <!-- Cards are generated from data/projects.js by script.js -->
+      <div class="proj-grid" id="projGrid"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SKILLS
+  ══════════════════════════════════════ -->
+  <section id="skills" class="skills sec">
+    <div class="wrap">
+
+      <header class="sec-hdr">
+        <span class="sec-tag">// 03</span>
+        <h2 class="sec-title">SKILLS &amp; <span class="ac">TECH</span></h2>
+        <div class="title-rule"></div>
+      </header>
+
+      <div class="skills-layout">
+        <div class="skill-bars">
+          <h3 class="sk-group-title">CORE PROFICIENCIES</h3>
+          <div class="skbar"><div class="skb-hd"><span>Unity3D</span><span class="sklv">Expert</span></div><div class="sktrack"><div class="skfill" data-w="95"></div></div></div>
+          <div class="skbar"><div class="skb-hd"><span>C#</span><span class="sklv">Expert</span></div><div class="sktrack"><div class="skfill" data-w="95"></div></div></div>
+          <div class="skbar"><div class="skb-hd"><span>VR / AR Development</span><span class="sklv">Expert</span></div><div class="sktrack"><div class="skfill" data-w="92"></div></div></div>
+          <div class="skbar"><div class="skb-hd"><span>Game Design</span><span class="sklv">Advanced</span></div><div class="sktrack"><div class="skfill" data-w="80"></div></div></div>
+          <div class="skbar"><div class="skb-hd"><span>DOTS / ECS</span><span class="sklv">Advanced</span></div><div class="sktrack"><div class="skfill" data-w="80"></div></div></div>
+          <div class="skbar"><div class="skb-hd"><span>Netcode for Entities</span><span class="sklv">Advanced</span></div><div class="sktrack"><div class="skfill" data-w="78"></div></div></div>
+          <div class="skbar"><div class="skb-hd"><span>Performance Optimization</span><span class="sklv">Advanced</span></div><div class="sktrack"><div class="skfill" data-w="82"></div></div></div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 Amr Saleh. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-            </div>
+        <div class="tech-panel">
+          <h3 class="sk-group-title">TECHNOLOGIES &amp; TOOLS</h3>
+          <div class="badges">
+            <span class="badge hi"><i class="fas fa-cube"></i> Unity3D</span>
+            <span class="badge hi"><i class="fas fa-code"></i> C#</span>
+            <span class="badge"><i class="fas fa-vr-cardboard"></i> VR / AR</span>
+            <span class="badge"><i class="fas fa-network-wired"></i> Netcode</span>
+            <span class="badge"><i class="fas fa-microchip"></i> DOTS / ECS</span>
+            <span class="badge"><i class="fas fa-music"></i> FMOD</span>
+            <span class="badge"><i class="fab fa-aws"></i> AWS GameLift</span>
+            <span class="badge"><i class="fab fa-node-js"></i> Node.js</span>
+            <span class="badge"><i class="fas fa-server"></i> Multiplay</span>
+            <span class="badge"><i class="fas fa-eye"></i> Vuforia SDK</span>
+            <span class="badge"><i class="fas fa-sitemap"></i> Design Patterns</span>
+            <span class="badge"><i class="fas fa-tachometer-alt"></i> Perf. Opt.</span>
+            <span class="badge"><i class="fas fa-robot"></i> Game AI</span>
+            <span class="badge"><i class="fas fa-layer-group"></i> UI Toolkit</span>
+            <span class="badge"><i class="fab fa-git-alt"></i> Git</span>
+            <span class="badge"><i class="fas fa-users-cog"></i> Agile / Scrum</span>
+          </div>
         </div>
-    </footer>
+      </div>
 
-    <script src="script.js"></script>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════ -->
+  <section id="contact" class="contact sec">
+    <div class="wrap">
+
+      <header class="sec-hdr">
+        <span class="sec-tag">// 04</span>
+        <h2 class="sec-title">GET IN <span class="ac">TOUCH</span></h2>
+        <div class="title-rule"></div>
+      </header>
+
+      <p class="contact-sub">Open to new opportunities and collaborations. Let's build something great.</p>
+
+      <div class="contact-grid">
+        <a href="mailto:AmrMHady92@gmail.com" class="ccard">
+          <div class="cc-ico"><i class="fas fa-envelope"></i></div>
+          <h3>EMAIL</h3>
+          <p>AmrMHady92@gmail.com</p>
+          <span class="cc-cta">SEND MESSAGE <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="https://www.linkedin.com/in/amrsaleh92/" class="ccard" target="_blank" rel="noopener noreferrer">
+          <div class="cc-ico"><i class="fab fa-linkedin"></i></div>
+          <h3>LINKEDIN</h3>
+          <p>linkedin.com/in/amrsaleh92</p>
+          <span class="cc-cta">CONNECT <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <a href="https://github.com/Amrmhady92" class="ccard" target="_blank" rel="noopener noreferrer">
+          <div class="cc-ico"><i class="fab fa-github"></i></div>
+          <h3>GITHUB</h3>
+          <p>github.com/Amrmhady92</p>
+          <span class="cc-cta">VIEW CODE <i class="fas fa-arrow-right"></i></span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-logo">[AS]</span>
+      <p class="footer-copy">&copy; 2024 Amr Saleh. All rights reserved.</p>
+      <div class="footer-socials">
+        <a href="https://github.com/Amrmhady92"           target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/amrsaleh92/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:AmrMHady92@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Project Modal ── -->
+  <div id="modal" class="modal" aria-modal="true" role="dialog" aria-hidden="true">
+    <div class="modal-panel">
+      <button class="modal-close" id="modalClose" aria-label="Close modal"><i class="fas fa-times"></i></button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+  <!-- Project data — edit data/projects.js to add/update projects -->
+  <script src="data/projects.js"></script>
+  <script src="script.js"></script>
+
 </body>
 </html>
